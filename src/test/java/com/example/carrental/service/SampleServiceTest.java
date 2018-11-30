@@ -15,24 +15,24 @@ import java.util.Optional;
 @SpringBootTest
 public class SampleServiceTest {
 
-//    @Autowired
-//    private SampleService sampleService;
-//
-//    @Autowired
-//    private SampleRepository sampleRepository;
-//
-//    @Test
-//    public void testSaveSample() {
-//        // Given
-//        Sample sample = new Sample();
-//        sample.setPrice(330);
-//
-//        // When
-//        sample = sampleRepository.saveAndFlush(sample);
-//
-//        // Then
-//        Optional<Sample> opt = sampleService.getOne(sample.getId());
-//        Assert.assertNotNull(sample.getId());
-//        Assert.assertEquals(opt.get().getPrice(), 300);
-//    }
+    @Autowired
+    private SampleService sampleService;
+
+    @Autowired
+    private SampleRepository sampleRepository;
+
+    @Test
+    public void testSaveSample() {
+        // Given
+        Sample sample = new Sample();
+        sample.setPlateNumber("11AA22");
+
+        // When
+        sample = sampleRepository.saveAndFlush(sample);
+
+        // Then
+        Optional<Sample> opt = sampleService.getOne(sample.getPlateNumber());
+        Assert.assertNotNull(sample.getId());
+        Assert.assertEquals(opt.get().getPlateNumber(), "11AA22");
+    }
 }
